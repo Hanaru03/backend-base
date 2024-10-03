@@ -1,15 +1,19 @@
 pipeline {
     agent any 
+    environment{
+        NPM_CONFIG_CAFHE = "${WORKSPACE}/.npm"
+    }
+    
     stages {
         stage('etapa de construccion de aplicacion'){
             agent {
                 docker {
-                    image 'alpine3.20'
+                    image 'node:alpine3.20'
                 }
             } stages{
                 stage('install'){
                     steps{
-                         sh 'npm install'   
+                         sh 'npm install'
                     }                    
                 }
             }
