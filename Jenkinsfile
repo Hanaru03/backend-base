@@ -32,8 +32,11 @@ pipeline {
          stage('construccion imagen docker'){
             steps{
                 script{
-                    sh 'docker build -t backend-base .'
-                    sh 'docker tag backend-base us-central1-docker.pkg.dev/expertis-classroom/docker-repository/backend-base:laguilera'
+                    docker.withRegistry("https://us-central1-docker.pkg.dev",'gcp-registry'){
+                        sh 'docker build -t backend-base .'
+                        sh 'docker tag backend-base us-central1-docker.pkg.dev/expertis-classroom/docker-repository/backend-base:laguilera'
+                        sh 'docker push us-central1-docker.pkg.dev/expertis-classroom/docker-repository/backend-base:laguilera'
+                    }
                 }
             }
         }
