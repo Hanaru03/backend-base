@@ -5,6 +5,7 @@ pipeline {
             steps{
                 echo 'Hola Mundo desde consola de jenkins'
                 sh 'echo "Hola Mundo desde el terminal"'
+                sh 'npm install'
             }
         }
     }
