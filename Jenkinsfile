@@ -29,5 +29,13 @@ pipeline {
                 }
             }
         }
+        stage('Construccion imagen docker'){
+            steps{
+                script{
+                    sh 'docker build -t app .'
+                    sh 'docker tag:app:latest app:1.0'
+                }
+            }
+        }
     }
 }
